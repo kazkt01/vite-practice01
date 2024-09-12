@@ -3,6 +3,7 @@ import "./styles/sanitize (13).css";
 import "./styles/styles.css";
 import { InputTodo } from "./Components/inputTodo";
 import { IncompleteTodos } from "./Components/IncompleteTodos.JSX";
+import { CompleteTodos } from "./Components/CompleteTodos";
 
 export const Todo = () => {
   const [todoText, setTodoText] = useState("");
@@ -56,25 +57,15 @@ export const Todo = () => {
         onChange={onChangeTodoText}
         onClick={onClickAdd}
       />
-      <IncompleteTodos />
+      <IncompleteTodos
+        todos={incompleteTodos}
+        onClickComplete={onClickComplete}
+        onClickDelete={onClickDelete}
+      />
+
       {/* /////////// ここから完了のTODO
       ////////////////////////////////// */}
-      <div className="complete-area">
-        <p className="title">完了のTODO</p>
-        <ul>
-          {completeTodos.map((todoA, index) => {
-            return (
-              // eslint-disable-next-line react/jsx-key
-              <li key={todoA}>
-                <div className="list-row">
-                  <p>{todoA}</p>
-                  <button onClick={() => onClickBack(index)}>戻す</button>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <CompleteTodos todos={completeTodos} onClickBack={onClickBack} />
     </>
   );
 };
