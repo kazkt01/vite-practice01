@@ -49,6 +49,7 @@ export const Todo = () => {
     setCompleteTodos(newCompleteTodos);
     setIncompleteTodos(newInCompleteTodos);
   };
+  const isMaxLimitIcompleteTodos = incompleteTodos.length >= 5;
 
   return (
     <>
@@ -56,15 +57,16 @@ export const Todo = () => {
         todoText={todoText}
         onChange={onChangeTodoText}
         onClick={onClickAdd}
+        disabled={isMaxLimitIcompleteTodos}
       />
+      {isMaxLimitIcompleteTodos && (
+        <p className="alert-Message">登録できるTODOは、5個までです。</p>
+      )}
       <IncompleteTodos
         todos={incompleteTodos}
         onClickComplete={onClickComplete}
         onClickDelete={onClickDelete}
       />
-
-      {/* /////////// ここから完了のTODO
-      ////////////////////////////////// */}
       <CompleteTodos todos={completeTodos} onClickBack={onClickBack} />
     </>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 export const IncompleteTodos = (props) => {
   // eslint-disable-next-line react/prop-types
   const { todos, onClickComplete, onClickDelete } = props;
