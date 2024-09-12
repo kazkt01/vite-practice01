@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./styles/sanitize (13).css";
 import "./styles/styles.css";
+import { InputTodo } from "./Components/inputTodo";
+import { IncompleteTodos } from "./Components/IncompleteTodos.JSX";
 
 export const Todo = () => {
   const [todoText, setTodoText] = useState("");
@@ -49,30 +51,12 @@ export const Todo = () => {
 
   return (
     <>
-      <div className="input-area">
-        <input
-          type="text"
-          placeholder="Todoを入力"
-          value={todoText}
-          onChange={onChangeTodoText}
-        />
-        <button onClick={onClickAdd}>追加</button>
-      </div>
-      <div className="incomplete-area">
-        <p className="title">未完了のTODO</p>
-        <ul>
-          {incompleteTodos.map((todo, index) => (
-            // eslint-disable-next-line react/jsx-key
-            <li key={todo}>
-              <div className="list-row">
-                <p>{todo}</p>
-                <button onClick={() => onClickComplete(index)}>完了</button>
-                <button onClick={() => onClickDelete(index)}>削除</button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <InputTodo
+        todoText={todoText}
+        onChange={onChangeTodoText}
+        onClick={onClickAdd}
+      />
+      <IncompleteTodos />
       {/* /////////// ここから完了のTODO
       ////////////////////////////////// */}
       <div className="complete-area">
